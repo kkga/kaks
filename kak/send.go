@@ -27,7 +27,7 @@ func Send(kctx *Context, kakCommand string, errOutFile *os.File) error {
 	sb.WriteString("try %{")
 	sb.WriteString(" eval")
 	if kctx.Buffer.Name != "" {
-		sb.WriteString(fmt.Sprintf(" -buffer %s", kctx.Buffer.Name))
+		sb.WriteString(fmt.Sprintf(" -buffer %s", strings.ReplaceAll(kctx.Buffer.Name, " ", "\\ ")))
 	} else if kctx.Client.Name != "" {
 		sb.WriteString(fmt.Sprintf(" -try-client %s", kctx.Client.Name))
 	}
