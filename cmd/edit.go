@@ -87,7 +87,7 @@ func connectOrEditInClient(c *EditCmd, fp *kak.Filepath) error {
 	} else {
 		// if client set, send 'edit [file]' to client
 		sb := strings.Builder{}
-		sb.WriteString(fmt.Sprintf("edit -existing %s", fp.Name))
+		sb.WriteString(fmt.Sprintf("edit -existing %s", strings.ReplaceAll(fp.Name, " ", "\\\\ ")))
 		if fp.Line != 0 {
 			sb.WriteString(fmt.Sprintf(" %d", fp.Line))
 		}
